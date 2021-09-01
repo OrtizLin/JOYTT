@@ -9,7 +9,7 @@ import Foundation
 import Siesta
 
 internal let NetworkClient = _NetworkClient.shared
-internal let baseURL = "https://this.is.api.url"
+internal let baseURL = ""
 
 internal class _NetworkClient {
     static let shared = _NetworkClient()

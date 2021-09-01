@@ -28,11 +28,20 @@ class MainViewController: UIViewController {
                     if let mWebView = mWebView {
                         mWebView.navigationDelegate = self
                         mWebView.load(request)
+                        
+//                        loadWebPage(url: url)
                         self.view.addSubview(mWebView)
                         self.view.sendSubviewToBack(mWebView)
                     }
                 }
     }
+    
+    func loadWebPage(url: URL)  {
+            var customRequest = URLRequest(url: url)
+        customRequest.setValue(TokenManager.shared.get(key: .loginToken), forHTTPHeaderField: "token")
+            mWebView!.load(customRequest)
+        }
+
 }
 
 extension MainViewController: WKNavigationDelegate {
@@ -45,4 +54,14 @@ extension MainViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("finish to load")
     }
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping
+        (WKNavigationActionPolicy) -> Void) {
+            if navigationAction.request.httpMethod != "GET" || navigationAction.request.value(forHTTPHeaderField: "token") != nil {
+                // not a GET or already a custom request - continue
+                decisionHandler(.allow)
+                return
+            }
+            decisionHandler(.cancel)
+            loadWebPage(url: navigationAction.request.url!)
+        }
 }

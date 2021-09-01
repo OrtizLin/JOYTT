@@ -9,7 +9,7 @@ import Foundation
 import Siesta
 
 protocol LoginModel {
-    func login(storeID: String, account: String, password: String, onSuccess: @escaping (LoginData) -> Void, onFailure: @escaping(String) -> Void)
+    func login(storeCode: String, account: String, password: String, deviceToken: String, onSuccess: @escaping (LoginData) -> Void, onFailure: @escaping(String) -> Void)
 }
 
 extension _NetworkClient: LoginModel {
@@ -19,24 +19,20 @@ extension _NetworkClient: LoginModel {
         }
     }
     
-    func login(storeID: String, account: String, password: String, onSuccess: @escaping (LoginData) -> Void, onFailure: @escaping (String) -> Void) {
-        let params = LoginPara(storeID: .value(storeID),
-                               account: .value(account),
-                               password: .value(password))
-        let para = RequestObject<LoginPara>(params: params)
-        guard let dict = try? para.asDictionary() else { return }
-        
+    func login(storeCode: String, account: String, password: String, deviceToken: String, onSuccess: @escaping (LoginData) -> Void, onFailure: @escaping (String) -> Void) {
+        let params = LoginPara(store_code: .value(storeCode), account: .value(account), password: .value(password), device_token: .value(deviceToken), platform: .value(1))
+        guard let dict = try? params.asDictionary() else { return }
         service.resource("/login")
-            .request(.put, json: dict)
+            .request(.post, json: dict)
             .onSuccess {(entity) in
                 guard let json: ResponseObject<LoginData> =
                         entity.typedContent(),
                       let code = json.code, let msg = json.msg else {
-                        onFailure("/password/getcode JSON 解析錯誤")
+                        onFailure("/login JSON 解析錯誤")
                         return
                 }
                 switch code {
-                case .success:
+                case 1:
                     guard let result = json.result else {
                         onFailure("/login 的 result 為 nil")
                         return
@@ -45,7 +41,7 @@ extension _NetworkClient: LoginModel {
                 default: onFailure(msg)
                 }
             }.onFailure { (error) in
-                onFailure(NSLocalizedString(error.userMessage, comment: "錯誤訊息"))
+                onFailure("登入失敗")
             }
     }
 }

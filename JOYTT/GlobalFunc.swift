@@ -7,7 +7,7 @@
 
 import UIKit
 
-let mainUrl = "https://www.google.com.tw"
+let mainUrl = ""
 let findStoreIDUrl = "https://github.com/OrtizLin"
 let forgotPasswordUrl = "https://medium.com/"
 

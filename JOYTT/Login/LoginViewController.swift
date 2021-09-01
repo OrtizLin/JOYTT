@@ -41,8 +41,8 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
        
         if !inputCheck() { return }
-        NetworkClient.login(storeID: storeIDTextField.text!, account: accountTextField.text!, password: passwordTextField.text!, onSuccess: { (loginData) in
-
+        NetworkClient.login(storeCode: storeIDTextField.text!, account: accountTextField.text!, password: passwordTextField.text!, deviceToken: "fakePushToken", onSuccess: { (loginData) in
+            
             guard let token = loginData.token else { return }
             self.keepLoginStatus(self.keepLoginButton.isOn, token: token)
             loginSuccess(token)

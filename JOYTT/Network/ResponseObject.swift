@@ -8,50 +8,29 @@
 import Foundation
 
 class ResponseObject<T: Decodable>: Decodable {
-    var code: ResponseCode?
+    var code: Int?
     var msg: String?
     var result: T?
-    var error: ErrorResult?
+    var error: Empty?
+    var validate: Empty?
     
     enum CodingKeys: String, CodingKey {
-        case code
-        case msg
+        case code = "code"
+        case msg = "msg"
         case result = "return"
-        case error
+        case error = "error"
+        case validate = "validate"
     }
-    
-    required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        code = try values.decodeIfPresent(ResponseCode.self, forKey: .code)
-        msg = try values.decodeIfPresent(String.self, forKey: .msg)
-        result = try values.decodeIfPresent(T.self, forKey: .result)
-        error = try values.decodeIfPresent(ErrorResult.self, forKey: .error)
-    }
+        required init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            code = try values.decodeIfPresent(Int.self, forKey: .code)
+            msg = try values.decodeIfPresent(String.self, forKey: .msg)
+            result = try values.decodeIfPresent(T.self, forKey: .result)
+            error = try values.decodeIfPresent(Empty.self, forKey: .error)
+            validate = try values.decodeIfPresent(Empty.self, forKey: .error)
+        }
 }
 
 class Empty: Decodable {
 }
 
-enum ResponseCode: Int, Decodable {
-    case success = 0
-    case fail = -1
-}
-
-struct ErrorResult: Codable {
-    let code: String?
-    let unit: String?
-    let message: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case code = "code"
-        case unit = "unit"
-        case message = "message"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        code = try values.decodeIfPresent(String.self, forKey: .code)
-        unit = try values.decodeIfPresent(String.self, forKey: .unit)
-        message = try values.decodeIfPresent(String.self, forKey: .message)
-    }
-}
