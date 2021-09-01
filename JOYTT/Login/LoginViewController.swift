@@ -41,18 +41,30 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
        
         if !inputCheck() { return }
-        NetworkClient.login(storeCode: storeIDTextField.text!, account: accountTextField.text!, password: passwordTextField.text!, deviceToken: "fakePushToken", onSuccess: { (loginData) in
-            
-            guard let token = loginData.token else { return }
-            self.keepLoginStatus(self.keepLoginButton.isOn, token: token)
-            loginSuccess(token)
-
-        }) { (error) in
-            self.showAlert(error)
-        }
         
+//        NetworkClient.login(storeCode: storeIDTextField.text!, account: accountTextField.text!, password: passwordTextField.text!, deviceToken: "fakePushToken", onSuccess: { (loginData) in
+//
+//            guard let token = loginData.token else { return }
+//            self.keepLoginStatus(self.keepLoginButton.isOn, token: token)
+//            loginSuccess(token)
+//
+//        }) { (error) in
+//            self.showAlert(error)
+//        }
+        
+        login(storeIDTextField.text!, accountTextField.text!, passwordTextField.text!, "fakePushToken") { (result, value) in
+            if result {
+                DispatchQueue.main.async {
+                    self.keepLoginStatus(self.keepLoginButton.isOn, token: value)
+                    loginSuccess(value)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.showAlert(value)
+                }
+            }
+        }
     }
-    
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)

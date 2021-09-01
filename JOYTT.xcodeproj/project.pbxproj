@@ -18,6 +18,7 @@
 		1855C4F226CCC1630045EE82 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855C4F126CCC1630045EE82 /* LoginData.swift */; };
 		1855C4F726CCDC450045EE82 /* GlobalFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855C4F626CCDC450045EE82 /* GlobalFunc.swift */; };
 		1855C4FF26CCE2430045EE82 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1855C4FE26CCE2430045EE82 /* TokenManager.swift */; };
+		185D2B9B26DF7FCB00848A72 /* NewLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185D2B9A26DF7FCB00848A72 /* NewLoginModel.swift */; };
 		18A11FAA26CC978E00E33696 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A11FA926CC978E00E33696 /* AppDelegate.swift */; };
 		18A11FAC26CC978E00E33696 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A11FAB26CC978E00E33696 /* SceneDelegate.swift */; };
 		18A11FB126CC978E00E33696 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A11FAF26CC978E00E33696 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		1855C4F126CCC1630045EE82 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		1855C4F626CCDC450045EE82 /* GlobalFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunc.swift; sourceTree = "<group>"; };
 		1855C4FE26CCE2430045EE82 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		185D2B9A26DF7FCB00848A72 /* NewLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLoginModel.swift; sourceTree = "<group>"; };
 		18A11FA626CC978E00E33696 /* JOYTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JOYTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A11FA926CC978E00E33696 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18A11FAB26CC978E00E33696 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				1855C4D526CCB8D50045EE82 /* LoginModel.swift */,
 				1855C4E026CCBE260045EE82 /* LoginPara.swift */,
 				1855C4F126CCC1630045EE82 /* LoginData.swift */,
+				185D2B9A26DF7FCB00848A72 /* NewLoginModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			files = (
 				1855C4DE26CCBC750045EE82 /* ResponseObject.swift in Sources */,
 				1855C4D626CCB8D50045EE82 /* LoginModel.swift in Sources */,
+				185D2B9B26DF7FCB00848A72 /* NewLoginModel.swift in Sources */,
 				1855C4EF26CCC04A0045EE82 /* Codable.swift in Sources */,
 				18A11FC926CC9CE400E33696 /* LoginViewController.swift in Sources */,
 				1855C4E426CCBE660045EE82 /* Parameter.swift in Sources */,

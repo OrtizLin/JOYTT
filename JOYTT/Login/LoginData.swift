@@ -19,3 +19,23 @@ struct LoginData : Codable {
     }
     
 }
+
+struct NewLoginData: Codable {
+    let code: Int?
+    let loginResult: LoginResult?
+    let msg: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case loginResult = "return"
+        case msg = "msg"
+    }
+}
+
+struct LoginResult: Codable {
+    let token: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case token = "token"
+    }
+}
