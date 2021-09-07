@@ -22,14 +22,14 @@ class MainViewController: UIViewController {
     private func loadURL(urlString: String) {
         let url = URL(string: urlString)
                 if let url = url {
-                    let request = URLRequest(url: url)
+//                    let request = URLRequest(url: url)
                     // init and load request in webview.
                     mWebView = WKWebView(frame: self.view.frame)
                     if let mWebView = mWebView {
                         mWebView.navigationDelegate = self
-                        mWebView.load(request)
+//                        mWebView.load(request)
                         
-//                        loadWebPage(url: url)
+                        loadWebPage(url: url)
                         self.view.addSubview(mWebView)
                         self.view.sendSubviewToBack(mWebView)
                     }

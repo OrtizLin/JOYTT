@@ -20,9 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let randomInt = Int.random(in: 0..<1) // 假資料
-        
-        if randomInt == 1 { // Token 未過期，進入主頁
+        if let token = TokenManager.shared.get(key: .loginToken), token != "" {
             if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
                 mainVC.url = mainUrl
             window?.rootViewController = mainVC
