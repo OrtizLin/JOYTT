@@ -7,14 +7,18 @@
 
 import UIKit
 
-let mainUrl = ""
-let findStoreIDUrl = "https://github.com/OrtizLin"
-let forgotPasswordUrl = "https://medium.com/"
-
+enum URLs: String {
+    case mainUrl = "1"
+    case findStoreIdUrl = "2"
+    case forgotPasswordUrl = "3"
+    case domain = "4"
+    case path = "5"
+    case baseUrl = "6"
+}
 func loginSuccess(_ token: String) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-        mainVC.url = mainUrl
+        mainVC.url = URLs.mainUrl.rawValue
         let keyWindow = UIApplication.shared.connectedScenes
                 .filter({$0.activationState == .foregroundActive})
                 .map({$0 as? UIWindowScene})

@@ -7,11 +7,9 @@
 
 import Foundation
 
-let apiURL = ""
-
 func login( _ store_code: String, _ account: String, _ password: String, _ device_token: String, callback: @escaping (Bool, String) -> Void) {
     
-    guard let url = URL(string: "\(apiURL)/login") else { return }
+    guard let url = URL(string: "\(URLs.baseUrl.rawValue)/login") else { return }
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.timeoutInterval = 30

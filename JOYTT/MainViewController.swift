@@ -22,26 +22,32 @@ class MainViewController: UIViewController {
     private func loadURL(urlString: String) {
         let url = URL(string: urlString)
                 if let url = url {
-//                    let request = URLRequest(url: url)
+                    let request = URLRequest(url: url)
                     // init and load request in webview.
                     mWebView = WKWebView(frame: self.view.frame)
                     if let mWebView = mWebView {
                         mWebView.navigationDelegate = self
-//                        mWebView.load(request)
                         
-                        loadWebPage(url: url)
+                        guard let cookie = HTTPCookie(properties: [
+                               .domain: URLs.domain.rawValue,
+                               .path: URLs.path.rawValue,
+                               .name: "token",
+                               .value: TokenManager.shared.get(key: .loginToken) ?? "",
+                               .secure: "true",
+                            .expires: NSDate(timeIntervalSinceNow: 86400)
+                           ]) else { return }
+
+                        mWebView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) {
+                            mWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                                   print("cookis: \(cookies)")
+                               }
+                           }
+                        mWebView.load(request)
                         self.view.addSubview(mWebView)
                         self.view.sendSubviewToBack(mWebView)
                     }
                 }
     }
-    
-    func loadWebPage(url: URL)  {
-            var customRequest = URLRequest(url: url)
-        customRequest.setValue(TokenManager.shared.get(key: .loginToken), forHTTPHeaderField: "token")
-            mWebView!.load(customRequest)
-        }
-
 }
 
 extension MainViewController: WKNavigationDelegate {
@@ -54,14 +60,4 @@ extension MainViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("finish to load")
     }
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping
-        (WKNavigationActionPolicy) -> Void) {
-            if navigationAction.request.httpMethod != "GET" || navigationAction.request.value(forHTTPHeaderField: "token") != nil {
-                // not a GET or already a custom request - continue
-                decisionHandler(.allow)
-                return
-            }
-            decisionHandler(.cancel)
-            loadWebPage(url: navigationAction.request.url!)
-        }
 }
