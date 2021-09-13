@@ -12,7 +12,7 @@ internal let NetworkClient = _NetworkClient.shared
 
 internal class _NetworkClient {
     static let shared = _NetworkClient()
-    var service = Service(baseURL: baseURL, standardTransformers: [.text, .image])
+    var service = Service(baseURL: URLs.baseUrl.rawValue, standardTransformers: [.text, .image])
     let jsonDecoder = JSONDecoder()
     
     fileprivate init() {

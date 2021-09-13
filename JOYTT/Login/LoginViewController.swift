@@ -25,14 +25,14 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func findStoreIDButtonPressed(_ sender: Any) {
-        guard let url = URL(string: findStoreIDUrl) else { return }
+        guard let url = URL(string: URLs.findStoreIdUrl.rawValue) else { return }
         let safari = SFSafariViewController(url: url)
         safari.delegate = self
         present(safari, animated: true, completion: nil)
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
-        guard let url = URL(string: forgotPasswordUrl) else { return }
+        guard let url = URL(string: URLs.forgotPasswordUrl.rawValue) else { return }
         let safari = SFSafariViewController(url: url)
         safari.delegate = self
         present(safari, animated: true, completion: nil)

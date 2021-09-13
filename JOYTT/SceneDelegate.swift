@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let token = TokenManager.shared.get(key: .loginToken), token != "" {
             if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-                mainVC.url = mainUrl
+                mainVC.url = URLs.mainUrl.rawValue
             window?.rootViewController = mainVC
             }
         } else { // Token 已過期，顯示登入畫面
