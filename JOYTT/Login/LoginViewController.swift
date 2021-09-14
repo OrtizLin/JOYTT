@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SafariServices
 
 class LoginViewController: UIViewController {
     
@@ -25,17 +24,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func findStoreIDButtonPressed(_ sender: Any) {
-        guard let url = URL(string: URLs.findStoreIdUrl.rawValue) else { return }
-        let safari = SFSafariViewController(url: url)
-        safari.delegate = self
-        present(safari, animated: true, completion: nil)
+        loginSuccess(URLs.findStoreIdUrl.rawValue)
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
-        guard let url = URL(string: URLs.forgotPasswordUrl.rawValue) else { return }
-        let safari = SFSafariViewController(url: url)
-        safari.delegate = self
-        present(safari, animated: true, completion: nil)
+        loginSuccess(URLs.forgotPasswordUrl.rawValue)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -112,11 +105,5 @@ extension LoginViewController {
         let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension LoginViewController: SFSafariViewControllerDelegate {
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        controller.dismiss(animated: true, completion: nil)
     }
 }

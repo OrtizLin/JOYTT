@@ -16,10 +16,10 @@ enum URLs: String {
     case baseUrl = "6"
 }
 
-func loginSuccess(_ token: String) {
+func loginSuccess(_ url: String) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     if let mainVC = storyboard.instantiateViewController(withIdentifier: "MainViewController") as? MainViewController {
-        mainVC.url = URLs.mainUrl.rawValue
+        mainVC.url = url
         let keyWindow = UIApplication.shared.connectedScenes
                 .filter({$0.activationState == .foregroundActive})
                 .map({$0 as? UIWindowScene})

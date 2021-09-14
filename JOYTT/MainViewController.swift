@@ -28,20 +28,28 @@ class MainViewController: UIViewController {
                     if let mWebView = mWebView {
                         mWebView.navigationDelegate = self
                         
-                        guard let cookie = HTTPCookie(properties: [
-                               .domain: URLs.domain.rawValue,
-                               .path: URLs.path.rawValue,
-                               .name: "token",
-                               .value: TokenManager.shared.get(key: .loginToken) ?? "",
-                               .secure: "true",
-                            .expires: NSDate(timeIntervalSinceNow: 86400)
-                           ]) else { return }
+                        // set token to cookie
+                        if urlString == URLs.mainUrl.rawValue {
+                            guard let cookie = HTTPCookie(properties: [
+                                   .domain: URLs.domain.rawValue,
+                                   .path: URLs.path.rawValue,
+                                   .name: "token",
+                                   .value: TokenManager.shared.get(key: .loginToken) ?? "",
+                                   .secure: "true",
+                                .expires: NSDate(timeIntervalSinceNow: 86400)
+                               ]) else { return }
 
-                        mWebView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) {
+                            mWebView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie) {
                             mWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
-                                   print("cookis: \(cookies)")
-                               }
-                           }
+                                    print("cookis: \(cookies)")
+                                }
+                            }
+                        }
+                        
+                        // listen logout function
+                        mWebView.configuration.userContentController = WKUserContentController()
+                        mWebView.configuration.userContentController.add(self, name: "logout")
+                        
                         mWebView.load(request)
                         self.view.addSubview(mWebView)
                         self.view.sendSubviewToBack(mWebView)
@@ -60,4 +68,10 @@ extension MainViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("finish to load")
     }
+}
+
+extension MainViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        loginFailed()
+     }
 }
