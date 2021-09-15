@@ -45,11 +45,11 @@ class LoginViewController: UIViewController {
 //            self.showAlert(error)
 //        }
         
-        login(storeIDTextField.text!, accountTextField.text!, passwordTextField.text!, "fakePushToken") { (result, value) in
+        login(storeIDTextField.text!, accountTextField.text!, passwordTextField.text!, TokenManager.shared.get(key: .pushToken) ?? "noToken") { (result, value) in
             if result {
                 DispatchQueue.main.async {
                     self.keepLoginStatus(self.keepLoginButton.isOn, token: value)
-                    loginSuccess(value)
+                    loginSuccess(URLs.mainUrl.rawValue)
                 }
             } else {
                 DispatchQueue.main.async {

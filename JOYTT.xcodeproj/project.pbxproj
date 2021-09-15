@@ -43,6 +43,7 @@
 		1855C4F126CCC1630045EE82 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		1855C4F626CCDC450045EE82 /* GlobalFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunc.swift; sourceTree = "<group>"; };
 		1855C4FE26CCE2430045EE82 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
+		185C813926F1976700FE20CC /* JOYTT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = JOYTT.entitlements; sourceTree = "<group>"; };
 		185D2B9A26DF7FCB00848A72 /* NewLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLoginModel.swift; sourceTree = "<group>"; };
 		18A11FA626CC978E00E33696 /* JOYTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JOYTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A11FA926CC978E00E33696 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		18A11FA826CC978E00E33696 /* JOYTT */ = {
 			isa = PBXGroup;
 			children = (
+				185C813926F1976700FE20CC /* JOYTT.entitlements */,
 				18A11FA926CC978E00E33696 /* AppDelegate.swift */,
 				18A11FAB26CC978E00E33696 /* SceneDelegate.swift */,
 				18A11FC226CC9B1F00E33696 /* MainViewController.swift */,
@@ -443,8 +445,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = JOYTT/JOYTT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 53SPZK6S9S;
 				INFOPLIST_FILE = JOYTT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -464,8 +467,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = JOYTT/JOYTT.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 53SPZK6S9S;
 				INFOPLIST_FILE = JOYTT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
